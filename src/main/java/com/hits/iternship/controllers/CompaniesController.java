@@ -23,12 +23,12 @@ public class CompaniesController {
     }
 
 
-    @GetMapping()
+    /* @GetMapping()
     public CompanyShortDto getAllCompanies()
     {
         return
     }
-
+*/
 
 
 

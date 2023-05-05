@@ -2,7 +2,7 @@ package com.hits.iternship.entities.interviews;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
+/*
 @Data
 @Entity
 @Table(name = "interviews")
@@ -10,6 +10,7 @@ public class InterviewsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(insertable=false, updatable=false)
     String id;
 
     String studentId;
@@ -22,3 +23,4 @@ public class InterviewsEntity {
 
     //List<CommentsEntity> comments;
 }
+*/
