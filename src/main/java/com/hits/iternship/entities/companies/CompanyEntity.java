@@ -29,7 +29,7 @@ public class CompanyEntity {
 
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "representetive_id", referencedColumnName = "company_id") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
+    @JoinColumn(name = "companies_id", referencedColumnName = "company_id") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
     List<RepresentativesEntity> representatives;
 
 

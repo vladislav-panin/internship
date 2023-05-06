@@ -3,7 +3,7 @@ package com.hits.iternship.entities.contacts;
 
 import jakarta.persistence.*;
 import lombok.Data;
-/*
+
 //Вроде найз
 @Data
 @Entity
@@ -12,8 +12,7 @@ public class ContactsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable=false, updatable=false)
-    String id;
+    Integer contact_id;
 
     String name;
 
@@ -23,4 +22,3 @@ public class ContactsEntity {
 
     String value;
 }
-*/
