@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class RepresentativesDto {
 
-    Integer representative_id;
+    Integer representativeId;
 
     String name;
 

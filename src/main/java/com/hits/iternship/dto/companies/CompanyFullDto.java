@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class CompanyFullDto {
 
-    private Integer company_id;
+    private Integer companyId;
 
     private String name;
 

@@ -2,6 +2,7 @@ package com.hits.iternship.service;
 
 import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
+import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.mapper.CompaniesMapper;
 import com.hits.iternship.repositories.CompanyRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ public class CompanyService {
     private final CompaniesMapper companiesMapper;
 
 
+
     public List<CompanyShortDto> findAllCompanies(){
         return companyRepository
                 .findAll()
@@ -27,13 +29,16 @@ public class CompanyService {
     }
 
 
-/*
-    public List<CompanyFullDto> findCompanyById(Integer company_id){ //хыхыхы, здесь я ищу всего единственное значение, но я не умею маппить ничего кроме листа, так что тут будет лист с единственным значением
+
+    public List<CompanyFullDto> findCompanyById(Integer companyId){ //хыхыхы, здесь я ищу всего единственное значение, но я не умею маппить ничего кроме листа, так что тут будет лист с единственным значением
+
+
+
         return companyRepository
-                .findCompanyEntitiesByCompany_id(company_id)
+                .findCompanyEntitiesByCompanyId(companyId)
                 .stream().map(companiesMapper::toCompanyFullDto)
                 .collect(Collectors.toList());
     }
 
- */
+
 }

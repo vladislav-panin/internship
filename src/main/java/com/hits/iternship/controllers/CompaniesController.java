@@ -90,10 +90,10 @@ public class CompaniesController {
     public List<CompanyShortDto> getAllCompanies() {
         return companyService.findAllCompanies();
     }
-/*
-    @GetMapping("/{company_id}")
-    public List<CompanyFullDto> getCompanyById(@PathVariable Integer company_id){
-        return companyService.findCompanyById(company_id);
+
+    @GetMapping("/{companyId}")
+    public List<CompanyFullDto> getCompanyById(@PathVariable Integer companyId){
+        return companyService.findCompanyById(companyId);
     }
-*/
+
 }

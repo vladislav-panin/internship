@@ -16,7 +16,7 @@ public class RepresentativesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer representative_id;
+    Integer representativeId;
 
     String name;
 
@@ -29,6 +29,6 @@ public class RepresentativesEntity {
 */
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "representatives_id", referencedColumnName = "representative_id")
+    @JoinColumn(name = "representativesId", referencedColumnName = "representativeId")
     List<ContactsEntity> contacts;
 }

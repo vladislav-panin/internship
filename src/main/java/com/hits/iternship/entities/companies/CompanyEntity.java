@@ -16,7 +16,7 @@ public class CompanyEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer company_id;
+    Integer companyId;
 
     String name;
 
@@ -30,11 +30,11 @@ public class CompanyEntity {
 
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companies_id", referencedColumnName = "company_id") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
+    @JoinColumn(name = "companiesId", referencedColumnName = "companyId") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
     List<RepresentativesEntity> representatives;
 ////////////////////////////////// ниже пошли изменения
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companies_id", referencedColumnName = "company_id")
+    @JoinColumn(name = "companiesId", referencedColumnName = "companyId")
     List<ContactsEntity> contacts;
 /*
     @ManyToOne(fetch = FetchType.LAZY)
