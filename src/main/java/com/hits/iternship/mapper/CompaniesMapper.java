@@ -26,4 +26,10 @@ public class CompaniesMapper {
                 modelMapper.map(companyEntity, CompanyShortDto.class);
     }
 
+    /*
+    public CompanyFullDto toCompanyFullDto(CompanyEntity companyEntity) {
+        return Objects.isNull(companyEntity) ? null :
+                modelMapper.map(companyEntity, CompanyFullDto.class);
+    }
+*/
 }

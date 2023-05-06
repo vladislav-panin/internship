@@ -2,6 +2,8 @@ package com.hits.iternship.dto.contacts;
 
 import lombok.Data;
 
+import java.util.List;
+
 //вроде найз
 @Data
 public class ContactsFull {
@@ -12,5 +14,5 @@ public class ContactsFull {
 
     private String position;
 
-    ContactsShort contactsShort;
+    List<ContactsShort> contactsShort;
 }

@@ -10,4 +10,6 @@ public interface CompanyRepository  extends JpaRepository<CompanyEntity, Integer
 
     List<CompanyEntity> findAll();
 
+  //  List<CompanyEntity> findCompanyEntitiesByCompany_id(Integer company_id);
+
 }

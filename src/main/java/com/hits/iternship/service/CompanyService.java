@@ -1,5 +1,6 @@
 package com.hits.iternship.service;
 
+import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.mapper.CompaniesMapper;
 import com.hits.iternship.repositories.CompanyRepository;
@@ -24,4 +25,15 @@ public class CompanyService {
                 .stream().map(companiesMapper::toCompanyShortDto)
                 .collect(Collectors.toList());
     }
+
+
+/*
+    public List<CompanyFullDto> findCompanyById(Integer company_id){ //хыхыхы, здесь я ищу всего единственное значение, но я не умею маппить ничего кроме листа, так что тут будет лист с единственным значением
+        return companyRepository
+                .findCompanyEntitiesByCompany_id(company_id)
+                .stream().map(companiesMapper::toCompanyFullDto)
+                .collect(Collectors.toList());
+    }
+
+ */
 }

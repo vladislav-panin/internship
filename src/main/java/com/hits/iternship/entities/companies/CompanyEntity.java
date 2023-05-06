@@ -1,6 +1,7 @@
 package com.hits.iternship.entities.companies;
 
 
+import com.hits.iternship.entities.contacts.ContactsEntity;
 import jakarta.persistence.Entity;
 import lombok.Data;
 import jakarta.persistence.*;
@@ -31,8 +32,10 @@ public class CompanyEntity {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "companies_id", referencedColumnName = "company_id") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
     List<RepresentativesEntity> representatives;
-
-
+////////////////////////////////// ниже пошли изменения
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companies_id", referencedColumnName = "company_id")
+    List<ContactsEntity> contacts;
 /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")

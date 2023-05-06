@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class CompanyFullDto {
 
-    private String id;
+    private Integer company_id;
 
     private String name;
 
@@ -17,11 +17,11 @@ public class CompanyFullDto {
 
     private String image;
 
-    private Integer plan;
+    //  private Integer plan;
 
-    private Integer taken;
+    // private Integer taken;
 
     List<RepresentativesDto> representativesDto;
 
-  //  List<ContactsFull> contactsFull;
+    List<ContactsFull> contactsFull;
 }

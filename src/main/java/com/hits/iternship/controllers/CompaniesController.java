@@ -1,5 +1,6 @@
 package com.hits.iternship.controllers;
 
+import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
@@ -55,7 +56,7 @@ public class CompaniesController {
 
             for (RepresentativesEntity oneRepEnt : repEnt
             ) {
-                oneRepEnt.getContacts().stream().map(contactsRepository::save).toList();
+                oneRepEnt.getContacts().stream().map(contactsRepository::save).toList(); // сохранение контактов представителей
             }
         }catch(Exception ex){
             companyRepository.save(companyEntity);
@@ -63,9 +64,9 @@ public class CompaniesController {
         }
 
 
-        companyEntity.getRepresentatives().stream().map(representativeRepository::save).toList();
+        companyEntity.getRepresentatives().stream().map(representativeRepository::save).toList();// сохранение представителей
 
-
+        companyEntity.getContacts().stream().map(contactsRepository::save).toList(); // сохранение контактов компании
 
         companyRepository.save(companyEntity);
         return companyEntity;
@@ -89,5 +90,10 @@ public class CompaniesController {
     public List<CompanyShortDto> getAllCompanies() {
         return companyService.findAllCompanies();
     }
-
+/*
+    @GetMapping("/{company_id}")
+    public List<CompanyFullDto> getCompanyById(@PathVariable Integer company_id){
+        return companyService.findCompanyById(company_id);
+    }
+*/
 }
