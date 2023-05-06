@@ -17,7 +17,11 @@ public class CompanyFullDto {
 
     private String image;
 
-    List<RepresentativesDto> representativesDto;
+    private Integer plan;
 
-    List<ContactsFull> contactsFull;
+    private Integer taken;
+
+   // List<RepresentativesDto> representativesDto;
+
+  //  List<ContactsFull> contactsFull;
 }
