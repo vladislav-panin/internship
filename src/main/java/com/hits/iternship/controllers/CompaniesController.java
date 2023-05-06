@@ -4,6 +4,7 @@ import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
 import com.hits.iternship.repositories.CompanyRepository;
+import com.hits.iternship.repositories.ContactsRepository;
 import com.hits.iternship.repositories.RepresentativeRepository;
 import com.hits.iternship.service.CompanyService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,8 @@ public class CompaniesController {
 
     private final RepresentativeRepository representativeRepository;
 
+    private final ContactsRepository contactsRepository;
+
     @PostMapping("/addCompany")
     public CompanyEntity addCompany(@RequestBody CompanyEntity companyEntity){
         /*
@@ -46,7 +49,24 @@ public class CompaniesController {
         companyEntity.setTaken(taken);
         companyEntity.setRepresentatives(representatives);
         */
+        try {
+            List<RepresentativesEntity> repEnt = companyEntity.getRepresentatives();// лист наших представителей
+
+
+            for (RepresentativesEntity oneRepEnt : repEnt
+            ) {
+                oneRepEnt.getContacts().stream().map(contactsRepository::save).toList();
+            }
+        }catch(Exception ex){
+            companyRepository.save(companyEntity);
+            return companyEntity;
+        }
+
+
         companyEntity.getRepresentatives().stream().map(representativeRepository::save).toList();
+
+
+
         companyRepository.save(companyEntity);
         return companyEntity;
     }
