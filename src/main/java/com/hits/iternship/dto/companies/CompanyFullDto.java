@@ -21,7 +21,7 @@ public class CompanyFullDto {
 
     private Integer taken;
 
-   // List<RepresentativesDto> representativesDto;
+    List<RepresentativesDto> representativesDto;
 
   //  List<ContactsFull> contactsFull;
 }

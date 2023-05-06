@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import lombok.Data;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 // вроде найз - разбор с комментов
 @Data
 @Entity
@@ -25,11 +27,12 @@ public class CompanyEntity {
 
     Integer taken;
 
-  /*
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    @Column(insertable=false, updatable=false)
-    RepresentativesEntity representatives;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "representetive_id", referencedColumnName = "company_id") // Первое имя - хз что такое, второе - имя айди в классе репрезентетивитес
+    List<RepresentativesEntity> representatives;
+
+
 /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")

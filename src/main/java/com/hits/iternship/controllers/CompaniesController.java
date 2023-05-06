@@ -2,16 +2,16 @@ package com.hits.iternship.controllers;
 
 import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
+import com.hits.iternship.entities.companies.RepresentativesEntity;
 import com.hits.iternship.repositories.CompanyRepository;
+import com.hits.iternship.repositories.RepresentativeRepository;
 import com.hits.iternship.service.CompanyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Validated
 @RestController
@@ -20,7 +20,7 @@ import java.util.List;
 public class CompaniesController {
 
 
-    private final CompanyRepository companyRepository;
+
 
     private final CompanyService companyService;
 
@@ -31,19 +31,37 @@ public class CompaniesController {
 
 
     ///////////////////Методы добавления, которые не зеленые///////////////////////////////////////
+    private final CompanyRepository companyRepository;
+
+    private final RepresentativeRepository representativeRepository;
 
     @PostMapping("/addCompany")
-    public CompanyEntity addCompany(String name,String description, String image, Integer plan,Integer taken){
-
+    public CompanyEntity addCompany(@RequestBody CompanyEntity companyEntity){
+        /*
         CompanyEntity companyEntity = new CompanyEntity();
         companyEntity.setName(name);
         companyEntity.setDescription(description);
         companyEntity.setImage(image);
         companyEntity.setPlan(plan);
         companyEntity.setTaken(taken);
-
+        companyEntity.setRepresentatives(representatives);
+        */
+        companyEntity.getRepresentatives().stream().map(representativeRepository::save).toList();
         companyRepository.save(companyEntity);
         return companyEntity;
+    }
+
+
+    @PostMapping("/addRepresentative")
+    public RepresentativesEntity addRepresentative(@RequestBody RepresentativesEntity representativesEntity ){
+    /*
+        RepresentativesEntity representativesEntity = new RepresentativesEntity();
+        representativesEntity.setName(name);
+        representativesEntity.setPosition(position);
+    */
+
+        representativeRepository.save(representativesEntity);
+        return representativesEntity;
     }
     ////////////////////////////////////////////////////////////////////////////////////////////
 

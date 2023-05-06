@@ -16,5 +16,5 @@ public class RepresentativesDto {
 
     String position;
 
-    List<ContactsShort> contactsShort;
+  //  List<ContactsShort> contactsShort;
 }
