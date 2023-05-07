@@ -12,7 +12,7 @@ public class ContactsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer contact_id;
+    Integer contactId;
 
     String name;
 

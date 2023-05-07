@@ -1,7 +1,7 @@
 package com.hits.iternship.dto.companies;
 
 
-import com.hits.iternship.dto.contacts.ContactsShort;
+import com.hits.iternship.dto.contacts.ContactsShortDto;
 import lombok.Data;
 
 import java.util.List;
@@ -16,5 +16,5 @@ public class RepresentativesDto {
 
     String position;
 
-    List<ContactsShort> contactsShort;
+    List<ContactsShortDto> contactsShortDto;
 }

@@ -4,17 +4,17 @@ import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.dto.companies.RepresentativesDto;
 
+import com.hits.iternship.dto.contacts.ContactsFullDto;
+import com.hits.iternship.dto.contacts.ContactsShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
-import jakarta.annotation.PostConstruct;
+import com.hits.iternship.entities.contacts.ContactsEntity;
 import lombok.RequiredArgsConstructor;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
-
-import static java.util.stream.Collectors.toList;
 
 
 @Component
@@ -36,26 +36,50 @@ public class CompaniesMapper {
 
         CompanyFullDto myCompanyDto = modelMapper.map(companyEntity,CompanyFullDto.class); // Тут лежит замапленное компани ентети, но с нулл по маппингу в плане представителей и контактов
 
-/*
-
-*/
+////////////////////////////////////////////////////////////////////////Маппинг репрезентативисов////////////////////
         List<RepresentativesEntity> representativesEntityList = companyEntity.getRepresentatives();
         List<RepresentativesDto> representativesDtoList = new ArrayList<>();
-        for(RepresentativesEntity oneRepEnt : representativesEntityList) {
-            RepresentativesDto firstRepDto = modelMapper.map(oneRepEnt, RepresentativesDto.class);
-            representativesDtoList.add(firstRepDto);
 
+        List<ContactsShortDto> repDtoContactsShortsListDto = new ArrayList<>();
+        for(RepresentativesEntity oneRepEnt : representativesEntityList) {
+              List<ContactsEntity> repContactsList = oneRepEnt.getContacts();  //Здесь лежит лист ентети контактов представителя
+            for (ContactsEntity repContactsToDto : repContactsList
+                 ) {
+                    ContactsShortDto firstRepShortContatactDto = modelMapper.map(repContactsToDto, ContactsShortDto.class);
+                    repDtoContactsShortsListDto.add(firstRepShortContatactDto);
+                    //ПО ИДЕЕ ТУТ НАДО СДЕЛАТЬ СЕТ КОНТАКТОВ НАШЕМУ РЕПРЕЗЕНТАТИВИСУ
+            }
+
+              RepresentativesDto firstRepDto = modelMapper.map(oneRepEnt, RepresentativesDto.class); //
+              RepresentativesDto FRepDtoPlusContacts = firstRepDto;
+              FRepDtoPlusContacts.setContactsShortDto(repDtoContactsShortsListDto);
+             // representativesDtoList.add(firstRepDto);//
+              representativesDtoList.add(FRepDtoPlusContacts);
         } // тут вроде получилось замапить репрезентативитес и сложить в новый лист
 
-        //CompanyFullDto myCompanyDto = modelMapper.map(companyEntity,CompanyFullDto.class);
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////Маппинг контактов компании//////////////////////////////////
 
-      //  myCompanyDto.setRepresentativesDto(representativesDtoList); // ВАЖНЫЙ МОМЕНТ
+    List<ContactsEntity> contactsFullListEntity = companyEntity.getContacts();
+    List<ContactsFullDto> contactsFullDtoList = new ArrayList<>();
+    for(ContactsEntity contactsEntityToDto : contactsFullListEntity)
+        {
+            ContactsFullDto firstContactsFullDto = modelMapper.map(contactsEntityToDto, ContactsFullDto.class);
+            contactsFullDtoList.add(firstContactsFullDto);
+        }
 
-        CompanyFullDto myCompanyDtoTest = myCompanyDto;
-        myCompanyDtoTest.setRepresentativesDto(representativesDtoList);
-        myCompanyDto.getRepresentativesDto();
-        return myCompanyDto; // ЗАМАПИЛ В МАППИНГЕ
-      /*  return Objects.isNull(companyEntity) ? null :
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+        CompanyFullDto myCompanyDtoReady = myCompanyDto;
+        myCompanyDtoReady.setRepresentativesDto(representativesDtoList);
+        myCompanyDtoReady.setContactsFullDto(contactsFullDtoList);
+
+      //  myCompanyDto.getRepresentativesDto();
+
+        return  myCompanyDtoReady;
+
+        //  return myCompanyDto; // ЗАМАПИЛ В МАППИНГЕ
+        /*  return Objects.isNull(companyEntity) ? null :
                 modelMapper.map(companyEntity, CompanyFullDto.class);
                 */
 

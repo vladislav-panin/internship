@@ -1,6 +1,6 @@
 package com.hits.iternship.dto.companies;
 
-import com.hits.iternship.dto.contacts.ContactsFull;
+import com.hits.iternship.dto.contacts.ContactsFullDto;
 import lombok.Data;
 
 import java.util.List;
@@ -23,5 +23,5 @@ public class CompanyFullDto {
 
     List<RepresentativesDto> representativesDto;
 
-    List<ContactsFull> contactsFull;
+    List<ContactsFullDto> contactsFullDto;
 }

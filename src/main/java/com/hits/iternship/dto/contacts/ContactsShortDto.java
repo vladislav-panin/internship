@@ -4,7 +4,7 @@ import lombok.Data;
 
 //вроде найз
 @Data
-public class ContactsShort {
+public class ContactsShortDto {
 
     private String contactType;
 

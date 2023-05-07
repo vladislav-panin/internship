@@ -6,13 +6,13 @@ import java.util.List;
 
 //вроде найз
 @Data
-public class ContactsFull {
+public class ContactsFullDto {
 
-    private String id;
+    private String contactId;
 
     private String name;
 
     private String position;
 
-    List<ContactsShort> contactsShort;
+    List<ContactsShortDto> contactsShortDto;
 }
