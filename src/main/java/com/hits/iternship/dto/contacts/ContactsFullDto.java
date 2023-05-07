@@ -14,5 +14,9 @@ public class ContactsFullDto {
 
     private String position;
 
-    List<ContactsShortDto> contactsShortDto;
+    private String contactType;
+
+    private String value;
+
+  //  List<ContactsShortDto> contactsShortDto;
 }

@@ -62,11 +62,16 @@ public class CompaniesMapper {
 
     List<ContactsEntity> contactsFullListEntity = companyEntity.getContacts();
     List<ContactsFullDto> contactsFullDtoList = new ArrayList<>();
+
+    List<ContactsShortDto> comContactsShortDto = new ArrayList<>();
     for(ContactsEntity contactsEntityToDto : contactsFullListEntity)
         {
+
             ContactsFullDto firstContactsFullDto = modelMapper.map(contactsEntityToDto, ContactsFullDto.class);
             contactsFullDtoList.add(firstContactsFullDto);
         }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

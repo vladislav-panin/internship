@@ -1,8 +1,11 @@
 package com.hits.iternship.entities.position;
 
+import com.hits.iternship.entities.companies.CompanyEntity;
 import jakarta.persistence.*;
 import lombok.Data;
-/*
+
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "positions")
@@ -10,8 +13,7 @@ public class PositionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(insertable=false, updatable=false)
-    String id;
+    Integer positionId;
 
 
     String name;
@@ -20,6 +22,7 @@ public class PositionEntity {
 
     int taken;
 
-    //CompanyEntity companies;
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "positionsId", referencedColumnName = "positionId")
+    List<CompanyEntity> companies;
 }
-*/
