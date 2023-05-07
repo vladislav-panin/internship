@@ -1,13 +1,53 @@
 package com.hits.iternship.controllers;
 
+import com.hits.iternship.dto.companies.CompanyShortDto;
+import com.hits.iternship.dto.position.CreatePositionTypeDto;
+import com.hits.iternship.dto.position.PlanTakenDto;
+import com.hits.iternship.dto.position.PositionsAllDto;
+import com.hits.iternship.dto.position.PositionsListDto;
+import com.hits.iternship.entities.companies.CompanyEntity;
+import com.hits.iternship.entities.position.PositionEntity;
+import com.hits.iternship.repositories.PositionRepository;
+import com.hits.iternship.service.CompanyService;
+import com.hits.iternship.service.PositionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Validated
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/positions")
 @RequiredArgsConstructor
 public class PositionsController {
+
+    private final PositionService positionService;
+
+    private final CompanyService companyService;
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+    private final PositionRepository positionRepository;
+    @PostMapping("/addPostion")
+    public PositionEntity addPosition(@RequestBody CreatePositionTypeDto createPositionTypeDtoEntity) {
+
+
+         PositionEntity positionEntity = positionService.createPosition(createPositionTypeDtoEntity);
+
+
+        return positionRepository.save(positionEntity);
+    }
+    ////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @GetMapping()
+    public PositionsAllDto getAllPositions(@RequestBody PlanTakenDto planTakenDto) {
+
+         List<PositionsListDto> positionsListDtos =   positionService.findAllPositions(); //Вернулся лист дтошек ПОЗИТИОНС ЛИСТ
+
+        PositionsAllDto pos = new PositionsAllDto();
+        pos.setPlan(planTakenDto.getPlan());
+        pos.setTaken(planTakenDto.getTaken());
+        pos.setPositions(positionsListDtos);
+        return pos;
+    }
 }

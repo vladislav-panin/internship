@@ -10,11 +10,13 @@ import java.util.List;
 @Data
 public class CompanyPositionsTypeDto {
 
+
+
+    String positionTypeDtoId;
+
     int plan;
 
     int taken;
-
-    String positionTypeDtoId; //Это поле - айдишник типа позиции
 
     String name;
 

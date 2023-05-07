@@ -1,0 +1,12 @@
+package com.hits.iternship.repositories;
+
+import com.hits.iternship.entities.contacts.ContactsEntity;
+import com.hits.iternship.entities.position.PositionEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface PositionRepository extends JpaRepository<PositionEntity, Integer> {
+
+    List<PositionEntity> findAll();
+}

@@ -16,4 +16,6 @@ public interface CompanyRepository  extends JpaRepository<CompanyEntity, Integer
 
     List<CompanyEntity> findCompanyEntitiesByCompanyId(Integer companyId);
 
+    CompanyEntity findCompanyEntityByCompanyId(Integer companyId);
+
 }

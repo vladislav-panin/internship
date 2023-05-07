@@ -5,20 +5,14 @@ import lombok.Data;
 
 import java.util.List;
 
-// вроде найз кроме комментов
-
-
-// 1 позиция - много компаний
 @Data
-public class PositionTypeDto {
+public class PositionsListDto {
 
-    String id;
-
+    Integer positionId;
     String name;
-
-    int plan;
-
-    int taken;
+    Integer plan;
+    Integer taken;
 
     List<CompanyShortDto> companies;
+
 }

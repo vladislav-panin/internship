@@ -9,7 +9,7 @@ import java.util.UUID;
 @Data
 public class CompanyShortDto {
 
-    private String company_id;
+    private String companyId;
 
     private String name;
 
