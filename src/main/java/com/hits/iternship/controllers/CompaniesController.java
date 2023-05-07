@@ -2,12 +2,14 @@ package com.hits.iternship.controllers;
 
 import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
+import com.hits.iternship.dto.position.*;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
 import com.hits.iternship.repositories.CompanyRepository;
 import com.hits.iternship.repositories.ContactsRepository;
 import com.hits.iternship.repositories.RepresentativeRepository;
 import com.hits.iternship.service.CompanyService;
+import com.hits.iternship.service.PositionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -25,6 +27,8 @@ public class CompaniesController {
 
 
     private final CompanyService companyService;
+
+    private final PositionService positionService;
 
     @GetMapping("/easy")
     public String easyMapping() {
@@ -94,6 +98,26 @@ public class CompaniesController {
     @GetMapping("/{companyId}")
     public List<CompanyFullDto> getCompanyById(@PathVariable Integer companyId){
         return companyService.findCompanyById(companyId);
+    }
+
+    @GetMapping("/{companyId}/positions")
+    //public PositionsAllFonOneCompanyDto getPositionsForOneCompany(@PathVariable Integer companyId) {
+    public PositionsAllFonOneCompanyDto getPositionsForOneCompany(@PathVariable Integer companyId) {
+
+        List<PositionsListForOneCompany> positionsListDtos =   positionService.findPositionsForOneCompany(companyId); //Вернулся лист дтошек ПОЗИТИОНС ЛИСТ
+
+        PositionsAllFonOneCompanyDto pos = new PositionsAllFonOneCompanyDto();
+        pos.setPlan(15);
+        pos.setTaken(5);
+        pos.setPositions(positionsListDtos);
+
+/*
+        PositionsAllFonOneCompanyDto positionsAllFonOneCompanyDto = new PositionsAllFonOneCompanyDto();
+
+        return positionsAllFonOneCompanyDto;
+
+ */
+        return pos;
     }
 
 }

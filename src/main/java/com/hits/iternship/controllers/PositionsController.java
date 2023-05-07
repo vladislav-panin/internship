@@ -1,10 +1,7 @@
 package com.hits.iternship.controllers;
 
 import com.hits.iternship.dto.companies.CompanyShortDto;
-import com.hits.iternship.dto.position.CreatePositionTypeDto;
-import com.hits.iternship.dto.position.PlanTakenDto;
-import com.hits.iternship.dto.position.PositionsAllDto;
-import com.hits.iternship.dto.position.PositionsListDto;
+import com.hits.iternship.dto.position.*;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.position.PositionEntity;
 import com.hits.iternship.repositories.PositionRepository;
@@ -50,4 +47,7 @@ public class PositionsController {
         pos.setPositions(positionsListDtos);
         return pos;
     }
+
+
+
 }

@@ -3,6 +3,7 @@ package com.hits.iternship.mapper;
 import com.hits.iternship.dto.companies.CompanyShortDto;
 import com.hits.iternship.dto.position.CreatePositionTypeDto;
 import com.hits.iternship.dto.position.PositionsListDto;
+import com.hits.iternship.dto.position.PositionsListForOneCompany;
 import com.hits.iternship.dto.position.PositionsTypesAllDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.position.PositionEntity;
@@ -38,5 +39,12 @@ public class PositionsMapper {
         return Objects.isNull(positionEntity) ? null :
                 modelMapper.map(positionEntity, PositionsListDto.class);
     }
+
+    public PositionsListForOneCompany toPositionsListForOneCompany(PositionEntity positionEntity)
+    {
+        return Objects.isNull(positionEntity) ? null :
+                modelMapper.map(positionEntity, PositionsListForOneCompany.class);
+    }
+
 
 }

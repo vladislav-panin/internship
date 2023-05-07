@@ -3,6 +3,7 @@ package com.hits.iternship.service;
 import com.hits.iternship.dto.position.CreatePositionTypeDto;
 import com.hits.iternship.dto.position.PositionsAllDto;
 import com.hits.iternship.dto.position.PositionsListDto;
+import com.hits.iternship.dto.position.PositionsListForOneCompany;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
 import com.hits.iternship.entities.position.PositionEntity;
@@ -65,6 +66,27 @@ public class PositionService {
 
 
         return positionsListDtos;
+    }
+
+    //public List<PositionsListForOneCompany> findPositionsForOneCompany(Integer companyId){
+    public List<PositionsListForOneCompany> findPositionsForOneCompany(Integer companyId){
+
+
+       CompanyEntity companyEntity = companyRepository.findCompanyEntityByCompanyId(companyId);
+
+
+
+
+        List<PositionEntity> positionsEntities = positionRepository.findPositionEntitiesByCompanies(companyEntity); //позиции вычесленные по айди компании - а именно позиции компании
+        List<PositionsListForOneCompany> positionsListDtos = new ArrayList<>();
+        for(PositionEntity positionEntity:positionsEntities) {
+            positionsListDtos.add(positionsMapper.toPositionsListForOneCompany(positionEntity));
+        }
+        /*
+        List<PositionsListForOneCompany> positionsListForOneCompanies = new ArrayList<>();
+        return positionsListForOneCompanies;
+        */
+         return positionsListDtos;
     }
 
 
