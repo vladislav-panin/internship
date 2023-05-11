@@ -21,8 +21,14 @@ public class PositionEntity {
     int plan;
 
     int taken;
-
+/*
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "positionsId", referencedColumnName = "positionId")
     List<CompanyEntity> companies;
+
+ */
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "positionsId", referencedColumnName = "positionId")
+    List<CompanyEntity> companies;
+
 }

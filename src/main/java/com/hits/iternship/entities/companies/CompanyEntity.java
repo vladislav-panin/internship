@@ -36,6 +36,9 @@ public class CompanyEntity {
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "companiesId", referencedColumnName = "companyId")
     List<ContactsEntity> contacts;
+
+
+
 /*
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id", referencedColumnName = "id")
