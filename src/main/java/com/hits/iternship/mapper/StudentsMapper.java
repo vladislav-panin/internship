@@ -1,0 +1,146 @@
+package com.hits.iternship.mapper;
+
+import com.hits.iternship.dto.StatusDto;
+import com.hits.iternship.dto.companies.CompaniesStudentShortDto;
+import com.hits.iternship.dto.contacts.ContactsShortDto;
+import com.hits.iternship.dto.position.PositionStudentShortDto;
+import com.hits.iternship.dto.position.PositionsTypesAllDto;
+import com.hits.iternship.dto.students.StudentsListDto;
+import com.hits.iternship.entities.companies.CompanyEntity;
+import com.hits.iternship.entities.position.PositionEntity;
+import com.hits.iternship.entities.status.StatusEntity;
+import com.hits.iternship.entities.students.StudentEntity;
+import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+@Component
+@RequiredArgsConstructor
+public class StudentsMapper {
+
+    private final ModelMapper modelMapper;
+/*
+    public List<StudentsListDto> toStudentsListDto(List<StudentEntity> studentEntityList) {
+
+
+        List<StudentsListDto> studentsListDtosEnd = new ArrayList<>();
+
+        StudentsListDto studentsListDto;
+
+        List<CompanyEntity> companyEntityList = new ArrayList<>();
+        List<CompaniesStudentShortDto> companiesStudentShortDtoList = new ArrayList<>();
+        List<PositionStudentShortDto> studentPositionList = new ArrayList<>();
+      //  StatusDto statusDtoAll;
+        List<StudentEntity> studentEntityListEnd = new ArrayList<>();
+        for(StudentEntity studentEntity:studentEntityList)   {
+             StatusEntity statusEntity = studentEntity.getStatus();
+             StatusDto statusDto = modelMapper.map(statusEntity, StatusDto.class);
+        //     statusDtoAll = statusDto;
+            List<CompanyEntity> oneStudentCompanyList = studentEntity.getCompanies();
+            for(CompanyEntity companyEntity: oneStudentCompanyList)
+            {
+
+                CompaniesStudentShortDto firstCompanyStudentShortDto = modelMapper.map(companyEntity, CompaniesStudentShortDto.class);
+                companiesStudentShortDtoList.add(firstCompanyStudentShortDto);
+            }
+
+
+            List<PositionEntity> oneStudentPositionList = studentEntity.getPositions();
+            for(PositionEntity positionEntity: oneStudentPositionList)
+            {
+
+                PositionStudentShortDto firstPositionStudentShortDto = modelMapper.map(positionEntity, PositionStudentShortDto.class);
+                studentPositionList.add(firstPositionStudentShortDto);
+            }
+
+
+
+            studentsListDto = modelMapper.map(studentEntity, StudentsListDto.class); // здесь 1 зампаленный студент
+            studentsListDto.setCompanies(companiesStudentShortDtoList);
+            studentsListDto.setPositions(studentPositionList);
+         //   studentsListDto.setStatus(statusDtoAll);
+
+
+            studentsListDtosEnd.add(studentsListDto);// сюда складываем замапленных студентов
+
+        }
+
+        return studentsListDtosEnd;
+
+        //StudentsListDto studentsListDtoList = modelMapper.map(studentEntityList, StudentsListDto.class);
+    }
+    */
+
+
+    public List<StudentsListDto> toStudentsListDto(List<StudentEntity> studentEntityList) {
+
+
+        List<StudentsListDto> studentsListDtosEnd = new ArrayList<>();
+
+        StudentsListDto studentsListDto;
+
+        StudentsListDto studentsListDtoLAST = new StudentsListDto();
+
+      //  List<CompanyEntity> companyEntityList = new ArrayList<>();
+        List<CompaniesStudentShortDto> companiesStudentShortDtoList = new ArrayList<>();
+        List<PositionStudentShortDto> studentPositionList = new ArrayList<>();
+        //  StatusDto statusDtoAll;
+      //  List<StudentEntity> studentEntityListEnd = new ArrayList<>();
+        for(StudentEntity studentEntity:studentEntityList)   {
+            StatusEntity statusEntity = studentEntity.getStatus();
+            StatusDto statusDto = modelMapper.map(statusEntity, StatusDto.class);
+            //     statusDtoAll = statusDto;
+            List<CompanyEntity> oneStudentCompanyList = studentEntity.getCompanies();
+            for(CompanyEntity companyEntity: oneStudentCompanyList)
+            {
+
+                CompaniesStudentShortDto firstCompanyStudentShortDto = modelMapper.map(companyEntity, CompaniesStudentShortDto.class);
+                companiesStudentShortDtoList.add(firstCompanyStudentShortDto);
+
+                studentsListDto = modelMapper.map(studentEntity, StudentsListDto.class);
+                studentsListDto.setCompanies(companiesStudentShortDtoList);
+
+                studentsListDtoLAST = studentsListDto;
+            }
+
+
+
+            List<PositionEntity> oneStudentPositionList = studentEntity.getPositions();
+            for(PositionEntity positionEntity: oneStudentPositionList)
+            {
+
+                PositionStudentShortDto firstPositionStudentShortDto = modelMapper.map(positionEntity, PositionStudentShortDto.class);
+                studentPositionList.add(firstPositionStudentShortDto);
+
+                studentsListDto = modelMapper.map(studentEntity, StudentsListDto.class);
+                studentsListDto.setPositions(studentPositionList);
+
+                studentsListDtoLAST = studentsListDto;
+
+            }
+
+            /*
+
+            studentsListDto = modelMapper.map(studentEntity, StudentsListDto.class); // здесь 1 зампаленный студент
+            studentsListDto.setCompanies(companiesStudentShortDtoList);
+            studentsListDto.setPositions(studentPositionList);
+            //   studentsListDto.setStatus(statusDtoAll);
+            */
+
+          //  studentsListDtosEnd.add(studentsListDto);// сюда складываем замапленных студентов
+
+
+            studentsListDtosEnd.add(studentsListDtoLAST);
+
+        }
+
+        return studentsListDtosEnd;
+
+        //StudentsListDto studentsListDtoList = modelMapper.map(studentEntityList, StudentsListDto.class);
+    }
+
+}
