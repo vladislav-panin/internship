@@ -6,6 +6,7 @@ import com.hits.iternship.dto.contacts.ContactsShortDto;
 import com.hits.iternship.dto.position.PositionStudentShortDto;
 import com.hits.iternship.dto.position.PositionsTypesAllDto;
 import com.hits.iternship.dto.students.StudentsListDto;
+import com.hits.iternship.dto.students.StudentsShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.position.PositionEntity;
 import com.hits.iternship.entities.status.StatusEntity;
@@ -143,4 +144,28 @@ public class StudentsMapper {
         //StudentsListDto studentsListDtoList = modelMapper.map(studentEntityList, StudentsListDto.class);
     }
 
+
+
+    public List<StudentsShortDto> toStudentsShortDto(List<StudentEntity> studentEntityList) {
+        List<StudentsShortDto> studentsShortDtosEnd = new ArrayList<>();
+
+        StudentsShortDto studentsShortDto;
+
+        StudentsListDto studentsListDtoLAST = new StudentsListDto();
+
+        for(StudentEntity studentEntity:studentEntityList)   {
+            StatusEntity statusEntity = studentEntity.getStatus();
+            StatusDto statusDto = modelMapper.map(statusEntity, StatusDto.class);
+            studentsShortDto = modelMapper.map(studentEntity, StudentsShortDto.class);
+            studentsShortDtosEnd.add(studentsShortDto);
+        }
+        return studentsShortDtosEnd;
+    }
+
+    public StudentsShortDto toOneStudentsShortsDto(StudentEntity studentEntity){
+        StatusEntity statusEntity = studentEntity.getStatus();
+        StatusDto statusDto = modelMapper.map(statusEntity, StatusDto.class);
+        StudentsShortDto studentsShortDto = modelMapper.map(studentEntity, StudentsShortDto.class);
+        return studentsShortDto;
+    }
 }

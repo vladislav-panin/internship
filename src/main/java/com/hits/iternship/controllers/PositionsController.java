@@ -28,9 +28,7 @@ public class PositionsController {
     @PostMapping("/addPostion")
     public PositionEntity addPosition(@RequestBody CreatePositionTypeDto createPositionTypeDtoEntity) {
 
-
-         PositionEntity positionEntity = positionService.createPosition(createPositionTypeDtoEntity);
-
+        PositionEntity positionEntity = positionService.createPosition(createPositionTypeDtoEntity);
 
         return positionRepository.save(positionEntity);
     }
@@ -39,15 +37,13 @@ public class PositionsController {
     @GetMapping()
     public PositionsAllDto getAllPositions(@RequestBody PlanTakenDto planTakenDto) {
 
-         List<PositionsListDto> positionsListDtos =   positionService.findAllPositions(); //Вернулся лист дтошек ПОЗИТИОНС ЛИСТ
+        List<PositionsListDto> positionsListDtos =   positionService.findAllPositions(); //Вернулся лист дтошек ПОЗИТИОНС ЛИСТ
 
         PositionsAllDto pos = new PositionsAllDto();
         pos.setPlan(planTakenDto.getPlan());
         pos.setTaken(planTakenDto.getTaken());
+
         pos.setPositions(positionsListDtos);
         return pos;
     }
-
-
-
 }
