@@ -35,13 +35,17 @@ public class PositionsController {
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping()
-    public PositionsAllDto getAllPositions(@RequestBody PlanTakenDto planTakenDto) {
+    //public PositionsAllDto getAllPositions(@RequestBody PlanTakenDto planTakenDto) {
+    public PositionsAllDto getAllPositions() {
 
         List<PositionsListDto> positionsListDtos =   positionService.findAllPositions(); //Вернулся лист дтошек ПОЗИТИОНС ЛИСТ
 
         PositionsAllDto pos = new PositionsAllDto();
-        pos.setPlan(planTakenDto.getPlan());
-        pos.setTaken(planTakenDto.getTaken());
+      //  pos.setPlan(planTakenDto.getPlan());
+      //  pos.setTaken(planTakenDto.getTaken());
+
+        pos.setPlan(50);
+        pos.setTaken(20);
 
         pos.setPositions(positionsListDtos);
         return pos;

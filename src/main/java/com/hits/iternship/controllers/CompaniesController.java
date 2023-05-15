@@ -2,17 +2,16 @@ package com.hits.iternship.controllers;
 
 import com.hits.iternship.dto.companies.CompanyFullDto;
 import com.hits.iternship.dto.companies.CompanyShortDto;
+import com.hits.iternship.dto.interview.InterviewOnCreateDto;
 import com.hits.iternship.dto.position.*;
 import com.hits.iternship.dto.students.StudentsListDto;
 import com.hits.iternship.dto.students.StudentsShortDto;
 import com.hits.iternship.entities.companies.CompanyEntity;
 import com.hits.iternship.entities.companies.RepresentativesEntity;
+import com.hits.iternship.entities.interviews.InterviewEntity;
 import com.hits.iternship.entities.position.PositionEntity;
 import com.hits.iternship.entities.students.StudentEntity;
-import com.hits.iternship.repositories.CompanyRepository;
-import com.hits.iternship.repositories.ContactsRepository;
-import com.hits.iternship.repositories.RepresentativeRepository;
-import com.hits.iternship.repositories.StudentRepository;
+import com.hits.iternship.repositories.*;
 import com.hits.iternship.service.CompanyService;
 import com.hits.iternship.service.PositionService;
 import com.hits.iternship.service.StudentService;
@@ -53,6 +52,10 @@ public class CompaniesController {
     private final ContactsRepository contactsRepository;
 
     private final StudentRepository studentRepository;
+
+    private final PositionRepository positionRepository;
+
+    private final InterviewRepository interviewRepository;
 
     @PostMapping("/addCompany")
     public CompanyEntity addCompany(@RequestBody CompanyEntity companyEntity){
@@ -196,6 +199,20 @@ public class CompaniesController {
 
  */
         return pos;
+    }
+
+
+    @PostMapping("/{companyId}/positions/{positionId}")
+    public InterviewOnCreateDto addInterview(@PathVariable Integer companyId, @PathVariable Integer positionId, @RequestBody InterviewOnCreateDto interviewOnCreateDto) {
+        InterviewEntity interviewEntity = new InterviewEntity();
+        interviewEntity.setCompany(companyRepository.findCompanyEntityByCompanyId(companyId));
+        interviewEntity.setPosition(positionRepository.findPositionEntityByPositionId(positionId));
+        //System.out.println(interviewOnCreateDto.getStudentId());
+        interviewEntity.setStudent(studentRepository.findStudentEntityByStudentId(interviewOnCreateDto.getStudentId()));
+        //interviewEntity.setStatus(statusRepository.findStatusEntityByStatusId(2).getStatus());
+        //interviewEntity.setComments([]);
+        interviewRepository.save(interviewEntity);
+        return interviewOnCreateDto;
     }
 
 }
